@@ -156,13 +156,26 @@ class Model
 		return $errors;
 	}
 
-	// given log path, returns log error contents
+	// given log path, returns log warning contents
 	function get_warnings($year, $month, $day)
 	{
 		$log = $this->get_log($year, $month, $day);
 
 		$filter_callback = function ($val) {
 			return strpos($val, 'Warning - ') === false ? false : true;
+		};
+		$errors = array_filter($log, $filter_callback);
+
+		return $errors;
+	}
+
+	// given log path, returns log info contents
+	function get_infos($year, $month, $day)
+	{
+		$log = $this->get_log($year, $month, $day);
+
+		$filter_callback = function ($val) {
+			return strpos($val, 'Info - ') === false ? false : true;
 		};
 		$errors = array_filter($log, $filter_callback);
 
