@@ -12,30 +12,42 @@
 	<![endif]-->
 
 	<!-- Le styles -->
-	<link rel="stylesheet" type="text/css" href="/assets/vendor/css/demo_table_jui.css" />
-	<link rel="stylesheet" type="text/css" href="/assets/vendor/jquery-ui-1.8.16.custom/css/bootstrap/jquery-ui-1.8.16.custom.css" />
-	<link rel="stylesheet" type="text/css" href="/assets/vendor/css/bootstrap.jui.css" />
-	<link rel="stylesheet" type="text/css" href="/assets/css/layout.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/fire_assets/css/demo_table_jui.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/fire_assets/css/custom-theme/jquery-ui-1.8.16.custom.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/fire_assets/bootstrap/bootstrap.css" />
 	<style>
+		body {
+			padding-top: 60px;
+		}
 		td.warning {
 			color:#C09853; background-color:#FCF8E3; border: 1px solid #FBEED5;
 		}
 	</style>
 
-	<script type="text/javascript" src="/assets/vendor/js/jquery-1.7.1.js"></script>
-	<script type="text/javascript" src="/assets/vendor/jquery-ui-1.8.16.custom/js/jquery-ui-1.8.16.custom.js"></script>
-	<script type="text/javascript" src="/assets/vendor/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" src="/assets/fire_assets/js/jquery-1.6.2.min.js"></script>
+	<script type="text/javascript" src="/assets/fire_assets/js/jquery-ui-1.8.16.custom.min.js"></script>
+	<script type="text/javascript" src="/assets/fire_assets/js/jquery.dataTables.js"></script>
 	<script type="text/javascript">
 	$(function() {
+
 		$.get(window.location.pathname + '/warnings/2012_01_26', function (data) {
 
 			console.log(data);
 			var html = '';
+			var count = 0;
 			$.each(data, function (index, item) {
-				html += '<tr><td class="warning">' + item + '</span></td></tr>';
+				if (++count < 20)
+				{
+					html += '<tr><td class="warning">' + item + '</span></td></tr>';
+				}
 			});
 
 			$('#logs').html(html);
+		});
+
+		var oTable = $('#example').dataTable({
+	        "bJQueryUI": true,
+	        "sPaginationType": "full_numbers"
 		});
 	});
 	</script>
@@ -43,42 +55,52 @@
 
 <body>
 
-	<div class="topbar">
-		<div class="fill">
-			<div class="container">
-				<a class="brand" href="#">Fire Log Viewer</a>
-			</div>
+<div class="topbar">
+	<div class="topbar-inner">
+		<div class="container-fluid">
+		<a class="brand" href="#">Fire Log Viewer</a>
+		<ul class="nav">
+			<li class="active"><a href="#">Errors</a></li>
+			<li><a href="#about">Warnings</a></li>
+			<li><a href="#contact">Info</a></li>
+			<li><a href="#contact">Other</a></li>
+		</ul>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div class="sidebar">
+		<div class="well">
+			<h5 id="ymd">Years</h5>
+			<ul id="ymd-list">
+				<?php foreach($years as $year): ?>
+				<li><a href="#"><?php echo $year['year'] ?></a></li>
+				<? endforeach; ?>
+			</ul>
 		</div>
 	</div>
 
-	<div class="container">
-
-		<div class="content">
-			<div class="page-header">
-				<h1>Fire Log Viewer <small>The easiest way to view fuel logs</small></h1>
+	<div class="content">
+		<!-- Main hero unit for a primary marketing message or call to action -->
+			<ul class="breadcrumb">
+			  <li><a href="#">Year: <span class="crumb-val">2012</span></a> <span class="divider">/</span></li>
+			  <li><a href="#">Month: <span class="crumb-val">January</span></a> <span class="divider">/</span></li>
+			  <li class="active">Day: <span class="crumb-val">1</span></li>
+			</ul>
+			<div>
+				<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+					<thead><tr><th>Logs</th></tr></thead>
+					<tbody id="logs"></tbody>
+					<tfoot><tr><th>Logs</th></tr></tfoot>
+				</table>
 			</div>
-			<div class="row" style="margin-left:0;">
-				<div class="span4">
-					<p>testing</p>
-			    </div>
-			    <div class="span8">
-					<table>
-					  <thead>
-					    <tr>
-					      <th>Logs</th>
-					    </tr>
-					  </thead>
-					  <tbody id="logs"></tbody>
-					</table>
-				</div>
-			</div>
-		</div>
 
 		<footer>
-			<p>&copy; Keith Loy 2012</p>
+			<p>&copy; Company 2011</p>
 		</footer>
-
-	</div> <!-- /container -->
+	</div>
+</div>
 
 </body>
 </html>

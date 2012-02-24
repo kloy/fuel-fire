@@ -22,7 +22,8 @@ class Controller extends \Controller_Rest
     {
         $this->format = 'html';
 
-        $data = array();
+        $model = Model::forge();
+        $data['years'] = $model->get_years();
         $view = \View::forge(__DIR__.'/../views/index.php', $data);
 
         return $this->response(\View::forge(__DIR__.'/../views/index.php', $data));
