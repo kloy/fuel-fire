@@ -27,6 +27,7 @@
 	</style>
 
 	<script type="text/javascript" src="/assets/fire_assets/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="/assets/fire_assets/js/jquery.tmpl.js"></script>
 	<script type="text/javascript" src="/assets/fire_assets/js/jquery-ui-1.8.16.custom.min.js"></script>
 	<script type="text/javascript" src="/assets/fire_assets/js/jquery.dataTables.js"></script>
 	<script type="text/javascript" src="/assets/fire_assets/js/app.js"></script>
@@ -80,6 +81,15 @@
 		</footer>
 	</div>
 </div>
+
+<script type="text/x-jquery-tmpl" id="listTemplate">
+	{{each(i, item) items}}
+	<li>
+		<a data-api="${item.link}" href="#">${item.ymd}: <span class="crumb-val">${item.val}</span></a>
+		<span class="divider">/</span>
+	</li>
+	{{/each}}
+</script>
 
 </body>
 </html>

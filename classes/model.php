@@ -73,8 +73,9 @@ class Model
 			if (is_dir($path.$year))
 			{
 				$years[] = array(
-					'year' => str_replace('/', '', $year),
-					'path' => $path.$year,
+					'val' => str_replace('/', '', $year),
+					'link' => \Uri::create("logs/months/".str_replace('/', '', $year)),
+					'ymd' => null,
 				);
 			}
 		}
@@ -96,9 +97,9 @@ class Model
 			{
 				$month_name = $this->_month_names[str_replace('/', '', $month)];
 				$months[] = array(
-					'name' => $month_name,
-					'number' => str_replace('/', '', $month),
-					'path' => $full_path,
+					'val' => $month_name,
+					'link' => \Uri::create("logs/days/{$year}_".str_replace('/', '', $month)),
+					'ymd' => 'year',
 				);
 			}
 		}
@@ -106,8 +107,8 @@ class Model
 		return $months;
 	}
 
-	// given a year and month, returns all log names
-	function get_logs($year, $month)
+	// given a year and month, returns all days
+	function get_days($year, $month)
 	{
 		$contents = $this->get_log_dir();
 		$month_dir_contents = $contents[$year.'/'][$month.'/'];
@@ -116,12 +117,13 @@ class Model
 
 		foreach($month_dir_contents as $log)
 		{
-
 			if (is_file($path.$log))
 			{
+				$d = str_replace('.php', '', $log);
 				$logs[] = array(
-					'day' => str_replace('.php', '', $log),
-					'path' => $path.$log,
+					'val' => $d,
+					'link' => \Uri::create("logs/errors/{$year}_{$month}_{$d}"),
+					'ymd' => 'month',
 				);
 			}
 		}

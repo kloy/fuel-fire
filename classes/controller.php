@@ -52,13 +52,13 @@ class Controller extends \Controller_Rest
         return $this->response($data);
     }
 
-    function get_logs($year_month = null)
+    function get_days($year_month = null)
     {
         if ($year_month === null)
             return $this->response(array($year_month . " not found"), 404);
 
 		$model = Model::forge();
-		$data = call_user_func_array(array($model, 'get_logs'), explode('_', $year_month));
+		$data = call_user_func_array(array($model, 'get_days'), explode('_', $year_month));
 
         if (count($data) === 0) $data = array(null);
 

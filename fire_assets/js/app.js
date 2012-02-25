@@ -10,27 +10,43 @@ var F =
 
 	setCurYear : function setCurYear(val)
 	{
-		this.curYear(val);
+		this.curYear = val;
 	},
 
-	setCurMonth : function setCurMonth()
+	setCurMonth : function setCurMonth(val)
 	{
-		this.curMonth(val);
+		this.curMonth = val;
 	},
 
-	setCurDay : function setCurDay()
+	setCurDay : function setCurDay(val)
 	{
-		this.curDay(val);
+		this.curDay = val;
 	},
 
-	setCurType : function setCurType()
+	setCurType : function setCurType(val)
 	{
-		this.curType(val);
+		this.curType = val;
 	},
 
-	setCurYmd : function setCurYmd()
+	setCurYmd : function setCurYmd(val)
 	{
-		this.curYmd(val);
+		var ymd;
+		switch(val)
+		{
+			case 'years':
+				ymd = 'months';
+				break;
+			case 'months':
+				ymd = 'days';
+				break;
+			case 'days':
+				ymd = 'days';
+				break;
+			default:
+				ymd = 'years';
+		}
+
+		this.curYmd = ymd;
 	},
 
 	getCurYear : function getCurYear()
