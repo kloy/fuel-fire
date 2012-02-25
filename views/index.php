@@ -20,37 +20,16 @@
 			padding-top: 60px;
 		}
 		td.warning {
-			color:#C09853; background-color:#FCF8E3; border: 1px solid #FBEED5;
+			color:#C09853 !important;
+			background-color:#FCF8E3 !important;
+			border: 1px solid #FBEED5 !important;
 		}
 	</style>
 
-	<script type="text/javascript" src="/assets/fire_assets/js/jquery-1.6.2.min.js"></script>
+	<script type="text/javascript" src="/assets/fire_assets/js/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="/assets/fire_assets/js/jquery-ui-1.8.16.custom.min.js"></script>
 	<script type="text/javascript" src="/assets/fire_assets/js/jquery.dataTables.js"></script>
-	<script type="text/javascript">
-	$(function() {
-
-		$.get(window.location.pathname + '/warnings/2012_01_26', function (data) {
-
-			console.log(data);
-			var html = '';
-			var count = 0;
-			$.each(data, function (index, item) {
-				if (++count < 20)
-				{
-					html += '<tr><td class="warning">' + item + '</span></td></tr>';
-				}
-			});
-
-			$('#logs').html(html);
-		});
-
-		var oTable = $('#example').dataTable({
-	        "bJQueryUI": true,
-	        "sPaginationType": "full_numbers"
-		});
-	});
-	</script>
+	<script type="text/javascript" src="/assets/fire_assets/js/app.js"></script>
 </head>
 
 <body>
@@ -72,7 +51,7 @@
 <div class="container-fluid">
 	<div class="sidebar">
 		<div class="well">
-			<h5 id="ymd">Years</h5>
+			<h5 id="ymd" data-api="years">Years</h5>
 			<ul id="ymd-list">
 				<?php foreach($years as $year): ?>
 				<li><a href="#"><?php echo $year['year'] ?></a></li>
