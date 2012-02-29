@@ -16,7 +16,7 @@ namespace Fire;
 
 class Controller extends \Controller_Rest
 {
-    protected $rest_format = 'json';
+    protected $rest_format = 'xml';
 
     function get_index()
     {

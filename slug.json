@@ -1,0 +1,16 @@
+{
+  "public": "./fire_assets",
+  "dependencies": [
+    "es5-shimify",
+    "json2ify",
+    "underscore",
+    "jqueryify",
+    "spine",
+    "spine/lib/local",
+    "spine/lib/ajax",
+    "spine/lib/route",
+    "spine/lib/tmpl",
+    "spine/lib/manager"
+  ],
+  "libs": []
+}

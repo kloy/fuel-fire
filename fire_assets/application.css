@@ -1,0 +1,9 @@
+@import 'bootstrap.css';
+body {
+  padding-top: 60px;
+}
+body td.warning {
+  color: #c09853 !important;
+  background-color: #fcf8e3 !important;
+  border: 1px solid #fbeed5 !important;
+}
